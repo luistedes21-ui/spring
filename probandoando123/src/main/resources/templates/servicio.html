@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		
+		<meta charset="ISO-8859-1"></meta>
+		
+		<title>SERVICIO</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/servicio.js}"></script>
+
+	</head>
+	
+	<body>
+	
+		<div th:replace="fragments/header :: header"></div>
+		
+		<div class="container">
+			<form th:action="@{/servicio/registrar}" method="post" th:object="${servicio}">
+				<div class="form-group">
+					
+					<label for="idservicio">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idServicio}"></input>
+					
+					<div class="form-group">
+					
+						<label 	for="nombre">NOMBRE DEL SERVICIO:</label> 
+						<input type="text" th:field="*{nombreServicio}" class="form-control" id="nombre"></input>
+						
+						<label 	for="nombre">COSTO:</label> 
+						<input type="text" th:field="*{costoServicio}" class="form-control" id="costo"></input>
+	
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreServicio')}" 
+							th:errors="*{nombreServicio}">
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/paciente/listar" class="btn btn-danger">Cancelar</a>
+			</form>
+		</div>
+	
+		<div th:replace="fragments/footer :: footer"></div>
+
+	</body>
+	
+</html>

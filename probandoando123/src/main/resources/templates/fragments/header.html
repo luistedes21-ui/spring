@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+</style>
+<head>
+<meta charset="UTF-8"></meta>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+</link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+<style></style>
+</head>
+
+<body>
+	<!-- th:fragment define un fragment los cuales sirven para evitar la redundancia de codigo -->
+	<!-- Sintaxis th:fragment="Nombre del fragment" -->
+	<div th:fragment="header">
+		<!-- this is header -->
+		<nav class="navbar navbar-inverse">
+			<img th:src="@{/imagenes/logounidos.jpg}" width="109" height="129"
+				alt="logo1" align=right></img>
+				
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/psicologo/inicio}">PSICOUNIDOS</a>
+				</div>
+				
+				
+					<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{/psicologo/listarPsicologo}" >Psicologos</a></li>
+					<li class="active"><a th:href="@{/paciente/listarPaciente}">Pacientes</a></li>
+					<li class="active"><a th:href="@{/especialidad/listar}">Especialidad</a></li>
+					<li class="active"><a th:href="@{/servicio/listar}">Servicio</a></li>
+					<li class="active"><a th:href="@{/reserva/listarReserva}">Reserva</a></li>
+					
+				</ul>
+				
+				<button class="btn btn-danger navbar-btn">Button</button>
+				</div>
+			</div>
+		</nav>		
+				
+		
+	</div>
+</body>
+
+</html>
