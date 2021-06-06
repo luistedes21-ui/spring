@@ -15,10 +15,6 @@ import luis.alfaro.prueba.model.Especialidad;
 
 public interface EspecialidadRepository extends JpaRepository<Especialidad, Integer>{
 	
-	@Query("from Especialidad e where e.nombreEspecialidad like %:nombreEspecialidad%")
-	List<Especialidad> buscarNombre(@Param("nombreEspecialidad") String nombreEspecialidad);
 	
-	@Query("from Especialidad e where e.servicio.nombreServicio like %:nombreServicio%")
-	List<Especialidad> buscarServicio(@Param("nombreServicio") String nombreServicio);
 
 }

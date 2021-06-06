@@ -43,16 +43,14 @@
                                    <tr>
                                             <th class="text-center">ID</th>
                                             <th class="text-center">NOMBRE</th>
-                                            <th class="text-center">SERVICIO</th>
                                             <th class="text-center">OPERACION</th>
-                                            <th class="text-center">OPERACION</th>
+                                            <th class="text-center">OPERACION</th>                                           
                                    </tr>
                             </thead>
                             <tbody>
                                  <tr th:each="esp: ${listaEspecialidades}">
                                        <td th:text="${esp.idEspecialidad}"></td>
-                                       <td th:text="${esp.nombreEspecialidad}"></td>
-                                        <td th:text="${esp.servicio.nombreServicio}"></td>                                        
+                                       <td th:text="${esp.nombreEspecialidad}"></td>                                                                    
                                      <td><a th:href="@{/especialidad/eliminar?id=}+${esp.idEspecialidad}">Eliminar</a></td>
 									<td><a th:href="@{'/especialidad/modificar/' + ${esp.idEspecialidad}}">Modificar</a></td>
                             </tbody>

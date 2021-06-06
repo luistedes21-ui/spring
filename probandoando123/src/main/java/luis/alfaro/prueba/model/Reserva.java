@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "Reserva")
@@ -25,15 +27,16 @@ public class Reserva implements Serializable{
 	@Column(name = "descripcionReserva", nullable = false, length =30)
 	private String descripcionReserva;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaReserva;
 	
 	@ManyToOne
 	@JoinColumn(name="idPsicologo", nullable = false)
-	public Psicologo psicologo;	
+	private Psicologo psicologo;	
 	
 	@ManyToOne
 	@JoinColumn(name="idPaciente", nullable = false)
-	public Paciente paciente;
+	private Paciente paciente;
 	
 	@Column(name = "servicioReserva", nullable = false, length =30)
 	public String servicioReserva;

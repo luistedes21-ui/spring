@@ -15,12 +15,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+
+import luis.alfaro.prueba.model.Especialidad;
 import luis.alfaro.prueba.model.Servicio;
+import luis.alfaro.prueba.service.EspecialidadService;
 import luis.alfaro.prueba.service.ServicioService;
 
 @Controller
 @RequestMapping("/servicio")
 public class ServicioController {
+	
+	@Autowired
+	private EspecialidadService eService;
 	
 	@Autowired
 	private ServicioService sService;
@@ -30,47 +36,65 @@ public class ServicioController {
 		return "bienvenido";
 	}
 
-	@RequestMapping("/")
+	@RequestMapping({"/", "listarServicio"})
 	public String irpaginaListadoServicios(Map<String, Object>model) {
         model.put("listaServicios", sService.listar());
     	return "listServicio";
     }
     
 	@RequestMapping("/irRegistrar")
-    public String irPaginaRegistrar(Model model) {
+    public String irPaginaRegistroServicio(Model model) {
+		
+		model.addAttribute("listaEspecialidades", eService.listar());
+		model.addAttribute("listaServicios", sService.listar());
+		
+    	model.addAttribute("especialidad", new Especialidad());
     	model.addAttribute("servicio", new Servicio());
+    	
     	return "servicio";
     }
 
-	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Servicio objServicio, BindingResult binRes, Model model)
+	public String registrar(@ModelAttribute Servicio objServicio , BindingResult binRes, Model model)
 	       throws ParseException
 	       {
-		         if (binRes.hasErrors())
-		        	 return "servicio";
-		         else {
-		        	 boolean flag = sService.insertar(objServicio);
-		        	 if (flag)
-		        		 return "redirect:/servicio/listar";
-		        	 else {
-		        		 model.addAttribute("mensaje", "Ocurrio un error");
-		        		 return "redirect:/servicio/irRegistrar";
-		        	 }
-		         }
+		        if(binRes.hasErrors())
+		        {
+		        	model.addAttribute("listaEspecialidades", eService.listar());
+		        	return "servicio";
+		        }
+		        else
+		        {
+		        	boolean flag = sService.insertar(objServicio);
+		        	if(flag)
+		        		return "redirect:/servicio/listarServicio";
+		        	else
+		        	{
+		        		model.addAttribute("mensaje", "Ocurrio un error");
+		        		return "redirect:/servicio/irRegistrar";
+		        	}
+		        }
+		        	
 	       }   
-	    
+    
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 			throws ParseException 
+			
 	{
+		System.out.println(id);
 		Optional<Servicio> objServicio = sService.listarId(id);
 		if (objServicio == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/servicio/listar";
 		}
 		else {
-			model.addAttribute("servicio", objServicio);
+			model.addAttribute("listaServicios", sService.listar());
+			
+			model.addAttribute("listaEspecialidades", eService.listar());
+			
+		if(objServicio.isPresent())
+			objServicio.ifPresent(o->model.addAttribute("servicio",o));
 			return "servicio";
 		}
 	}
@@ -92,11 +116,23 @@ public class ServicioController {
 		return "listServicio";
 
 	}
-	@RequestMapping("/listar")
-	public String listar(Map<String, Object> model) {
-	model.put("listaServicios", sService.listar());
-	return "listServicio";
-	}	
+	
+
+	@RequestMapping("/listarID")
+	public String listarId(Map<String, Object> model, @ModelAttribute Servicio servicio)
+			throws ParseException 
+			{
+		          sService.listarId(servicio.getIdServicio());
+		          return "listServicio";
+			}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar(Model model)
+	{
+		model.addAttribute("servicio", new Servicio());
+		return "buscar";
+	}
+	
 }
 
 	

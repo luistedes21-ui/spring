@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 
 @Entity
@@ -26,16 +29,22 @@ public class Servicio implements Serializable{
 	@Column(name="costoServicio", nullable= false)
 	private int costoServicio;
 	
+	@ManyToOne
+	@JoinColumn(name="idEspecialidad", nullable = false)
+	public Especialidad especialidad;
+
 	public Servicio() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
 
-	public Servicio(int idServicio, String nombreServicio, int costoServicio) {
+	public Servicio(int idServicio, String nombreServicio, int costoServicio,
+			luis.alfaro.prueba.model.Especialidad especialidad) {
 		super();
 		this.idServicio = idServicio;
 		this.nombreServicio = nombreServicio;
 		this.costoServicio = costoServicio;
+		this.especialidad = especialidad;
 	}
 
 	public int getIdServicio() {
@@ -60,6 +69,14 @@ public class Servicio implements Serializable{
 
 	public void setCostoServicio(int costoServicio) {
 		this.costoServicio = costoServicio;
+	}
+
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
 	}
 
 	

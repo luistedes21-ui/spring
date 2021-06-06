@@ -71,18 +71,7 @@ public class EspecialidadServiceImpl implements EspecialidadService {
 		return dEspe.findAll();
 	}
 
-	@Override
-	@Transactional
-	public List<Especialidad> buscarnombre(String nombreEspecialidad) {
-		
-		return dEspe.buscarNombre(nombreEspecialidad);
-	}
-
-	@Override
-	@Transactional
-	public List<Especialidad> buscarServicio(String nameServicio) {
-		
-		return dEspe.buscarServicio(nameServicio);
-	}
+	
+	
 
 }

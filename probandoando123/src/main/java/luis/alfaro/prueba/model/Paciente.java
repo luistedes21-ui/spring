@@ -68,6 +68,46 @@ public class Paciente implements Serializable{
 		this.apellidoPaciente = apellidoPaciente;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apellidoPaciente == null) ? 0 : apellidoPaciente.hashCode());
+		result = prime * result + dniPaciente;
+		result = prime * result + edadPaciente;
+		result = prime * result + idPaciente;
+		result = prime * result + ((nombrePaciente == null) ? 0 : nombrePaciente.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		if (apellidoPaciente == null) {
+			if (other.apellidoPaciente != null)
+				return false;
+		} else if (!apellidoPaciente.equals(other.apellidoPaciente))
+			return false;
+		if (dniPaciente != other.dniPaciente)
+			return false;
+		if (edadPaciente != other.edadPaciente)
+			return false;
+		if (idPaciente != other.idPaciente)
+			return false;
+		if (nombrePaciente == null) {
+			if (other.nombrePaciente != null)
+				return false;
+		} else if (!nombrePaciente.equals(other.nombrePaciente))
+			return false;
+		return true;
+	}
+
 	public int getEdadPaciente() {
 		return edadPaciente;
 	}

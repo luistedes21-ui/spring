@@ -15,6 +15,5 @@ public interface EspecialidadService {
 	public Optional<Especialidad> buscarId(int idEspecialidad);
 	
 	List<Especialidad> listar();
-	List<Especialidad> buscarnombre (String nombreEspecialidad);
-	List<Especialidad> buscarServicio (String nameServicio);
+	
 }

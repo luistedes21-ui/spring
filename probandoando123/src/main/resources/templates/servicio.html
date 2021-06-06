@@ -39,6 +39,19 @@
 						
 						<label 	for="nombre">COSTO:</label> 
 						<input type="text" th:field="*{costoServicio}" class="form-control" id="costo"></input>
+						
+						
+						<label for= "especialidad" class = "col-sm-2 col-from-label">ESPECIALIDAD</label>
+						<select class = "form-control" th:field="*{especialidad.idEspecialidad}">   
+						
+						<option th:each= "esp: ${listaEspecialidades}"
+						        th:value= "${esp.idEspecialidad}"
+						        th:text= "${esp.nombreEspecialidad}"
+						        th:selected= "(${esp.idEspecialidad} == *{especialidad.idEspecialidad})"></option>
+
+						 </select>
+						
+						
 	
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreServicio')}" 
 							th:errors="*{nombreServicio}">

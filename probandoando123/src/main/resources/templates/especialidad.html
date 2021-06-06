@@ -37,16 +37,7 @@
 						<label 	for="nombre">NOMBRE:</label> 
 						<input type="text" th:field="*{nombreEspecialidad}" class="form-control" id="nombre"></input>
 						
-						<label for= "servicio" class = "col-sm-2 col-from-label">SERVICIO</label>
-						<select class = "form-control" th:field="*{servicio.idServicio}">   
 						
-						<option th:each= "serv: ${listaServicios}"
-						        th:value= "${serv.idServicio}"
-						        th:text= "${serv.nombreServicio}"
-						        th:selected= "(${serv.idServicio} == *{servicio.idServicio})"></option>
-
-						 </select>
-
 					</div>
 					
 				</div>

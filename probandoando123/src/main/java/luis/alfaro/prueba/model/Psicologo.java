@@ -48,6 +48,37 @@ public class Psicologo implements Serializable {
 		return nombrePsicologo;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codigoCPSP ^ (codigoCPSP >>> 32));
+		result = prime * result + idPsicologo;
+		result = prime * result + ((nombrePsicologo == null) ? 0 : nombrePsicologo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Psicologo other = (Psicologo) obj;
+		if (codigoCPSP != other.codigoCPSP)
+			return false;
+		if (idPsicologo != other.idPsicologo)
+			return false;
+		if (nombrePsicologo == null) {
+			if (other.nombrePsicologo != null)
+				return false;
+		} else if (!nombrePsicologo.equals(other.nombrePsicologo))
+			return false;
+		return true;
+	}
+
 	public void setNombrePsicologo(String nombrePsicologo) {
 		this.nombrePsicologo = nombrePsicologo;
 	}

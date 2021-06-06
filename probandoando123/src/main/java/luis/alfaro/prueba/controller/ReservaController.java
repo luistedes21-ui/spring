@@ -43,7 +43,7 @@ public class ReservaController {
 		return "bienvenidoPsicologo";
 	}
 	
-	@RequestMapping({"/", "listarReserva"})
+	@RequestMapping(value={"", "/", "listarReserva"})
 	public String irReserva(Map<String, Object> model) {
 		model.put("listaReservas", rService.listar());
 		return "listReserva";
@@ -51,35 +51,44 @@ public class ReservaController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("paciente", new Paciente());
-		model.addAttribute("psicologo", new Psicologo());
+		
 		
 		model.addAttribute("listaPacientes", pacService.listar());
 		model.addAttribute("listaPsicologos", pService.listar());
+		model.addAttribute("listaReservas", rService.listar());
 		
+		model.addAttribute("paciente", new Paciente());
+		model.addAttribute("psicologo", new Psicologo());
 		model.addAttribute("reserva", new Reserva());
 		
 		return "reserva";
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Reserva objP, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@ModelAttribute Reserva objP, BindingResult binRes, Model model) throws ParseException 
+		{
+		
 		if (binRes.hasErrors())
 		{
 			model.addAttribute("listaPacientes", pacService.listar());
 			model.addAttribute("listaPsicologos", pService.listar());			
 			return "reserva";
 		}
-		else {
+		else
+		{
 			boolean flag = rService.insertar(objP);
-			if (flag)
-				return "redirect:/reserva/listarReserva";
-			else {
+			if (flag) {
+				return "redirect:/reserva/";
+			}
+			else
+			{
 				model.addAttribute("mensaje", "Ocurrió un error");
 				return "redirect:/reserva/irRegistrar";
 			}
 		}
-	}
+		
+		}	
+	
 
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {

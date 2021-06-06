@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,21 +21,16 @@ public class Especialidad implements Serializable{
 	
 	@Column(name = "nameEspecialidad", nullable = false, length = 20)
 	private String nombreEspecialidad;
-	
-	@ManyToOne
-	@JoinColumn(name= "idServicio", nullable = false)
-	private Servicio servicio;
 
 	public Especialidad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Especialidad(int idEspecialidad, String nombreEspecialidad, Servicio servicio) {
+	public Especialidad(int idEspecialidad, String nombreEspecialidad) {
 		super();
 		this.idEspecialidad = idEspecialidad;
 		this.nombreEspecialidad = nombreEspecialidad;
-		this.servicio = servicio;
 	}
 
 	public int getIdEspecialidad() {
@@ -54,14 +47,6 @@ public class Especialidad implements Serializable{
 
 	public void setNombreEspecialidad(String nombreEspecialidad) {
 		this.nombreEspecialidad = nombreEspecialidad;
-	}
-
-	public Servicio getServicio() {
-		return servicio;
-	}
-
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
 	}
 	
 

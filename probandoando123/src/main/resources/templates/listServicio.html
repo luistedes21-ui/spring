@@ -44,6 +44,7 @@
                                             <th class="text-center">ID</th>
                                             <th class="text-center">NOMBRE DEL SERVICIO</th>
                                             <th class="text-center">COSTO</th>
+                                            <th class="text-center">ESPECIALIDAD</th>
                                             <th class="text-center">OPERACION</th>
                                             <th class="text-center">OPERACION</th>
                                    </tr>
@@ -53,6 +54,7 @@
                                        <td th:text="${serv.idServicio}"></td>
                                        <td th:text="${serv.nombreServicio}"></td>
                                        <td th:text="${'S/.  '+serv.costoServicio}"></td>
+                                        <td th:text="${serv.especialidad.nombreEspecialidad}"></td>         
                                          <td><a th:href="@{/servicio/eliminar?id=}+${serv.idServicio}">Eliminar</a></td>
 									<td><a th:href="@{'/servicio/modificar/' + ${serv.idServicio}}">Modificar</a></td>
                                  </tr>

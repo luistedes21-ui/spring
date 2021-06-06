@@ -10,63 +10,53 @@
 		<script
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>		
-		<script type="text/javascript" th:src="@{/js/race.js}"></script>
 	</head>
+	
 	
 	<body>
 	
-		<div th:replace="fragments/header :: header"></div>		
+		<div th:replace="fragments/header :: header"></div>
+		
 		<div class="container">
 			<form th:action="@{/reserva/registrar}" method="post" th:object="${reserva}">
-						
-				<div class="form-group">							
+				<div class="form-group">
+					
 					<label for="idReserva">ID:</label> 
-					<input type="text" class="form-control" th:field="*{idReserva}"></input>	
-									
-				<div class="form-group">					
-					<label 	for="nombreDescr">Descripcion:</label> 
-					<input type="text" th:field="*{descripcionReserva}" class="form-control" id="descripcion"></input>
-							
-				<div class="form-group">					
-					<label 	for="fechaRe">Fecha Reserva</label> 
-					<input type="date" th:field="*{fechaReserva}" class="form-control" id="fechaRes"></input>	
+					<input type="text" class="form-control" th:field="*{idReserva}"></input>
 					
-					<div class="form-group">					
-					<label 	for="nombreDescr">Servicio:</label> 
-					<input type="text" th:field="*{servicioReserva}" class="form-control" id="servicio"></input>
-					
-					
-					<div class="form-group">										
-						<label for="Psicologo" class=" col-sm-2 col-form-label">ID PSICOLOGO: </label>
-					<select
-						class="form-control" th:field="*{psicologo.IdPsicologo}">
-						<option th:each="p: ${listaPsicologos}" th:value="${p.idPsicologo}"
-							th:text="${p.nombrePsicologo}"
-							th:selected="(${p.idPsicologo} == *{psicologo.idPsicologo})"></option>
-					</select>
-					
-							<label for="Paciente" class=" col-sm-2 col-form-label">ID PACIENTE: </label>
-					<select
-						class="form-control" th:field="*{paciente.idPaciente}">
-						<option th:each="u: ${listaPacientes}" th:value="${u.idPaciente}"
-							th:text="${u.nombrePaciente}"
-							th:selected="(${u.idPaciente} == *{paciente.idPaciente})"></option>
-					</select>
-					
+					<div class="form-group">
+				
+						<label 	for="descripcion">Descripcion:</label> 
+						<input type="text" th:field="*{descripcionReserva}" class="form-control" id="descripcion"></input>
 						
+						<label 	for="fecha">Fecha:</label> 
+						<input type="date" th:field="*{fechaReserva}" class="form-control" id="fecha"></input>
+						
+						<label 	for="servicio">Servicio:</label> 
+						<input type="text" th:field="*{servicioReserva}" class="form-control" id="servicio"></input>
+						
+						<label for= "psicologo" class = "col-sm-2 col-from-label">Psicologo</label>
+						<select class = "form-control" th:field="*{psicologo.idPsicologo}">						
+						<option th:each= "psi: ${listaPsicologos}"
+						        th:value= "${psi.idPsicologo}"
+						        th:text= "${psi.nombrePsicologo}"
+						        th:selected= "(${psi.idPsicologo} == *{psicologo.idPsicologo})"></option>
+						 </select>
+						
+						
+						<label for= "paciente" class = "col-sm-2 col-from-label">Paciente</label>
+						<select class = "form-control" th:field="*{paciente.idPaciente}">						
+						<option th:each= "pac: ${listaPacientes}"
+						        th:value= "${pac.idPaciente}"
+						        th:text= "${pac.nombrePaciente}"
+						        th:selected= "(${pac.idPaciente} == *{paciente.idPaciente})"></option>
+						 </select>
+					</div>
 					
-				<div class="alert alert-danger" th:if="${#fields.hasErrors('descripcionReserva')}" 
-					th:errors="descripcionReserva">
 				</div>
-						
-					</div>					
-					</div>					
-					</div>
-					</div>					
-					</div>
-					
+				
 				<button type="submit" class="btn btn-primary">Aceptar</button>
-				<a href="/psicologo/listarPsicologo" class="btn btn-danger">Cancelar</a>
+				<a href="/reserva/listarReserva" class="btn btn-danger">Cancelar</a>
 			</form>
 		</div>
 	
