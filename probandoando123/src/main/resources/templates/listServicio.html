@@ -55,8 +55,8 @@
                                        <td th:text="${serv.nombreServicio}"></td>
                                        <td th:text="${'S/.  '+serv.costoServicio}"></td>
                                         <td th:text="${serv.especialidad.nombreEspecialidad}"></td>         
-                                         <td><a th:href="@{/servicio/eliminar?id=}+${serv.idServicio}">Eliminar</a></td>
-									<td><a th:href="@{'/servicio/modificar/' + ${serv.idServicio}}">Modificar</a></td>
+                                         <td><a th:href="@{/servicio/eliminar?id=}+${serv.idServicio}"><span class="glyphicon glyphicon-trash" aria-hidden="true">  Eliminar</span></a></td>
+									<td><a th:href="@{'/servicio/modificar/' + ${serv.idServicio}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  Modificar</span></a></td>
                                  </tr>
                             </tbody>
                          </table>

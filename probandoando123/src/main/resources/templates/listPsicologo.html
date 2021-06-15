@@ -47,8 +47,8 @@
 									<td th:text="${psi.idPsicologo}"></td>
 									<td th:text="${psi.nombrePsicologo}"></td>
 									<td th:text="${psi.codigoCPSP}"></td>
-									<td><a th:href="@{/psicologo/eliminar?id=}+${psi.idPsicologo}">Eliminar</a></td>
-									<td><a th:href="@{'/psicologo/modificar/' + ${psi.idPsicologo}}">Modificar</a></td>
+									<td><a th:href="@{/psicologo/eliminar?id=}+${psi.idPsicologo}"><span class="glyphicon glyphicon-trash" aria-hidden="true">  Eliminar</span></a></td>
+									<td><a th:href="@{'/psicologo/modificar/' + ${psi.idPsicologo}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  Modificar</span></a></td>
 								</tr>
 							</tbody>
 						</table>
