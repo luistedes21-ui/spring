@@ -21,18 +21,20 @@
 	<div th:fragment="header">
 		<!-- this is header -->
 		<nav class="navbar navbar-inverse">
-			<img th:src="@{/imagenes/logounidos.jpg}" width="109" height="129"
-				alt="logo1" align=right></img>
-				
+			
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/psicologo/inicio}">PSICOUNIDOS</a>
+				<a th:href="@{/psicologo/inicio}">
+				<img th:src="@{/imagenes/logounidos.jpg}" width="109" height="129"
+				alt="logo1" ></img>
+				</a>
 				</div>
 				
 				
 					<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a th:href="@{/psicologo/listarPsicologo}" >Psicologos</a></li>
+					
 					<li class="active"><a th:href="@{/paciente/listarPaciente}">Pacientes</a></li>
 					<li class="active"><a th:href="@{/especialidad/listarEspecialidad}">Especialidad</a></li>
 					<li class="active"><a th:href="@{/servicio/listarServicio}">Servicio</a></li>
@@ -40,7 +42,10 @@
 					
 				</ul>
 				
-				<button class="btn btn-danger navbar-btn">CONSULTA GRATUITA</button>
+				<a th:href="@{/reserva/irRegistrar}">
+				<button class="btn btn-success navbar-btn" > RESERVA AHORA </button>
+				</a>
+				
 				</div>
 			</div>
 		</nav>		

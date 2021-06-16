@@ -1,7 +1,7 @@
 package luis.alfaro.prueba.controller;
 
 import java.util.Map;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.sun.el.parser.ParseException;
 
+import luis.alfaro.prueba.model.Paciente;
+import luis.alfaro.prueba.model.Psicologo;
 import luis.alfaro.prueba.model.Reserva;
 import luis.alfaro.prueba.model.Servicio;
-import luis.alfaro.prueba.service.iReservaService;
-import luis.alfaro.prueba.model.Psicologo;
-import luis.alfaro.prueba.service.iPsicologoService;
-
-import luis.alfaro.prueba.model.Paciente;
 import luis.alfaro.prueba.service.ServicioService;
 import luis.alfaro.prueba.service.iPacienteService;
+import luis.alfaro.prueba.service.iPsicologoService;
+import luis.alfaro.prueba.service.iReservaService;
 
 @Controller
 @RequestMapping("/reserva")
@@ -63,6 +63,7 @@ public class ReservaController {
 		return "reserva";
 	}
 
+	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Reserva objP, BindingResult binRes, Model model) throws ParseException {
 
@@ -99,6 +100,23 @@ public class ReservaController {
 			return "reserva";
 		}
 	}
+	
+	@RequestMapping("/verComprobante/{id}")
+	public String verComprobante(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
+		System.out.println(id);
+		Reserva objP = rService.listarId(id).get();
+		if (objP == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
+			return "redirect:/reserva/listarReserva";
+		} else {
+			model.addAttribute("listaPacientes", pacService.listar());
+			model.addAttribute("listaServicios", sService.listar());
+			model.addAttribute("listaPsicologos", pService.listar());
+
+			model.addAttribute("reserva", objP);
+			return "comprobante";
+		}
+	}
 
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
@@ -115,7 +133,7 @@ public class ReservaController {
 		return "listReserva";
 	}
 
-	@RequestMapping("/listar")
+	@RequestMapping("/listar") 
 	public String listar(Map<String, Object> model) {
 		model.put("listaReservas", rService.listar());
 		return "listReserva";
