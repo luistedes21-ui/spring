@@ -14,36 +14,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import luis.alfaro.prueba.model.Reserva;
+import luis.alfaro.prueba.model.Servicio;
 import luis.alfaro.prueba.service.iReservaService;
 import luis.alfaro.prueba.model.Psicologo;
 import luis.alfaro.prueba.service.iPsicologoService;
 
 import luis.alfaro.prueba.model.Paciente;
+import luis.alfaro.prueba.service.ServicioService;
 import luis.alfaro.prueba.service.iPacienteService;
-
 
 @Controller
 @RequestMapping("/reserva")
 public class ReservaController {
-	
-	
+
 	@Autowired
 	private iReservaService rService;
 	@Autowired
-	private iPacienteService pacService;	
+	private iPacienteService pacService;
 	@Autowired
 	private iPsicologoService pService;
-	
+	@Autowired
+	private ServicioService sService;
 
-	
-	
-	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenidoPsicologo";
 	}
-	
-	@RequestMapping(value={"", "/", "listarReserva"})
+
+	@RequestMapping(value = { "", "/", "listarReserva" })
 	public String irReserva(Map<String, Object> model) {
 		model.put("listaReservas", rService.listar());
 		return "listReserva";
@@ -51,52 +49,52 @@ public class ReservaController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		
-		
+
 		model.addAttribute("listaPacientes", pacService.listar());
 		model.addAttribute("listaPsicologos", pService.listar());
 		model.addAttribute("listaReservas", rService.listar());
-		
+		model.addAttribute("listaServicios", sService.listar());
+
 		model.addAttribute("paciente", new Paciente());
+		model.addAttribute("sevicio", new Servicio());
 		model.addAttribute("psicologo", new Psicologo());
 		model.addAttribute("reserva", new Reserva());
-		
+
 		return "reserva";
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Reserva objP, BindingResult binRes, Model model) throws ParseException 
-		{
-		
-		if (binRes.hasErrors())
-		{
+	public String registrar(@ModelAttribute Reserva objP, BindingResult binRes, Model model) throws ParseException {
+
+		if (binRes.hasErrors()) {
 			model.addAttribute("listaPacientes", pacService.listar());
-			model.addAttribute("listaPsicologos", pService.listar());			
+			model.addAttribute("listaServicios", sService.listar());
+			model.addAttribute("listaPsicologos", pService.listar());
 			return "reserva";
-		}
-		else
-		{
+		} else {
 			boolean flag = rService.insertar(objP);
 			if (flag) {
 				return "redirect:/reserva/";
-			}
-			else
-			{
+			} else {
 				model.addAttribute("mensaje", "Ocurrió un error");
 				return "redirect:/reserva/irRegistrar";
 			}
 		}
-		
-		}	
-	
+
+	}
 
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
-		Optional<Reserva> objP = rService.listarId(id);
+		System.out.println(id);
+		Reserva objP = rService.listarId(id).get();
 		if (objP == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/reserva/listarReserva";
 		} else {
+			model.addAttribute("listaPacientes", pacService.listar());
+			model.addAttribute("listaServicios", sService.listar());
+			model.addAttribute("listaPsicologos", pService.listar());
+
 			model.addAttribute("reserva", objP);
 			return "reserva";
 		}
@@ -116,18 +114,17 @@ public class ReservaController {
 		}
 		return "listReserva";
 	}
+
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaReservas", rService.listar());
 		return "listReserva";
 	}
-	
+
 	@RequestMapping("/listarId")
-	public String listar(Map<String, Object> model, @ModelAttribute Reserva reserva) 
-	throws ParseException
-	{
+	public String listar(Map<String, Object> model, @ModelAttribute Reserva reserva) throws ParseException {
 		rService.listarId(reserva.getIdReserva());
 		return "listReserva";
-	}	
-	
+	}
+
 }

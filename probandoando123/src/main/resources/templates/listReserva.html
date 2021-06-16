@@ -52,7 +52,7 @@
 								<td th:text="${#dates.format(res.fechaReserva, 'dd/MM/yyyy')}"></td>
 								<td th:text="${res.psicologo.nombrePsicologo}"></td>
 								<td th:text="${res.paciente.nombrePaciente}"></td>
-								<td th:text="${res.servicioReserva}"></td>
+								<td th:text="${res.servicio.nombreServicio}"></td>
 								<td><a th:href="@{/reserva/eliminar?id=}+${res.idReserva}"><span class="glyphicon glyphicon-trash" aria-hidden="true">  Eliminar</span></a></td>
 								<td><a th:href="@{'/reserva/modificar/' + ${res.idReserva}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true">  Modificar</span></a></td>
 							</tr>

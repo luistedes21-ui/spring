@@ -32,8 +32,13 @@
 						<label 	for="fecha">Fecha:</label> 
 						<input type="date" th:field="*{fechaReserva}" class="form-control" id="fecha"></input>
 						
-						<label 	for="servicio">Servicio:</label> 
-						<input type="text" th:field="*{servicioReserva}" class="form-control" id="servicio"></input>
+						<label for= "servicio" class = "col-sm-2 col-from-label">Servicio</label>
+						<select class = "form-control" th:field="*{servicio.idServicio}">	
+						<option th:each= "serv: ${listaServicios}"
+						        th:value= "${serv.idServicio}"
+						        th:text= "${serv.nombreServicio}"
+						        th:selected= "(${serv.idServicio} == *{servicio.idServicio})"></option>
+						 </select>
 						
 						<label for= "psicologo" class = "col-sm-2 col-from-label">Psicologo</label>
 						<select class = "form-control" th:field="*{psicologo.idPsicologo}">						

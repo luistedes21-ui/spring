@@ -24,7 +24,7 @@ public class Reserva implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idReserva;
 	
-	@Column(name = "descripcionReserva", nullable = false, length =30)
+	@Column(name = "descripcionReserva", nullable = false)
 	private String descripcionReserva;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -38,8 +38,25 @@ public class Reserva implements Serializable{
 	@JoinColumn(name="idPaciente", nullable = false)
 	private Paciente paciente;
 	
-	@Column(name = "servicioReserva", nullable = false, length =30)
-	public String servicioReserva;
+	@ManyToOne
+	@JoinColumn(name="idServicio", nullable = false)
+	private Servicio servicio;
+
+	public Reserva() {
+		super();
+		
+	}
+
+	public Reserva(int idReserva, String descripcionReserva, Date fechaReserva, Psicologo psicologo, Paciente paciente,
+			Servicio servicio) {
+		super();
+		this.idReserva = idReserva;
+		this.descripcionReserva = descripcionReserva;
+		this.fechaReserva = fechaReserva;
+		this.psicologo = psicologo;
+		this.paciente = paciente;
+		this.servicio = servicio;
+	}
 
 	public int getIdReserva() {
 		return idReserva;
@@ -81,29 +98,14 @@ public class Reserva implements Serializable{
 		this.paciente = paciente;
 	}
 
-	public String getServicioReserva() {
-		return servicioReserva;
+	public Servicio getServicio() {
+		return servicio;
 	}
 
-	public void setServicioReserva(String servicioReserva) {
-		this.servicioReserva = servicioReserva;
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
 
-	public Reserva() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public Reserva(int idReserva, String descripcionReserva, Date fechaReserva, Psicologo psicologo, Paciente paciente,
-			String servicioReserva) {
-		super();
-		this.idReserva = idReserva;
-		this.descripcionReserva = descripcionReserva;
-		this.fechaReserva = fechaReserva;
-		this.psicologo = psicologo;
-		this.paciente = paciente;
-		this.servicioReserva = servicioReserva;
-	}
-	
-	
+
 }

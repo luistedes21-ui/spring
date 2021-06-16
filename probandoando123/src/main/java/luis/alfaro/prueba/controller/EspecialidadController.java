@@ -75,7 +75,7 @@ public class EspecialidadController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/especialidad/listarEspecialidad";
 		} else {
-			model.addAttribute("paciente", objE);
+			model.addAttribute("especialidad", objE);
 			return "especialidad";
 		}
 	}
