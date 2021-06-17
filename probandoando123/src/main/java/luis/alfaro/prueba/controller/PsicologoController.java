@@ -22,7 +22,7 @@ public class PsicologoController {
 	@Autowired
 	private iPsicologoService pService;
 	
-	@RequestMapping("/inicio")
+	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "inicio";
 	}
