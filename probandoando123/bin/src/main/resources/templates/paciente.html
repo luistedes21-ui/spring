@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>		
+		<meta charset="ISO-8859-1"></meta>		
+		<title>Paciente</title>		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>
+	</head>
+	
+	<body>
+	
+		<div th:replace="fragments/header :: header"></div>
+		
+		<div class="container">
+			<form th:action="@{/paciente/registrar}" method="post" th:object="${paciente}">
+				<div class="form-group">
+					
+					<label for="idpaciente">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idPaciente}"></input>
+					
+					<div class="form-group">
+					
+						<label 	for="nombre">NOMBRE:</label> 
+						<input type="text" th:field="*{nombrePaciente}" class="form-control" id="nombre"></input>
+						
+						<label 	for="nombre">APELLIDO:</label> 
+						<input type="text" th:field="*{apellidoPaciente}" class="form-control" id="apellido"></input>
+						
+						<label 	for="nombre">EDAD:</label> 
+						<input type="text" th:field="*{edadPaciente}" class="form-control" id="edad"></input>
+						
+						<label 	for="nombre">DNI:</label> 
+						<input type="text" th:field="*{dniPaciente}" class="form-control" id="dni"></input>
+	
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombrePaciente')}" 
+							th:errors="nombrePaciente">
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/paciente/listarPaciente" class="btn btn-danger">Cancelar</a>
+			</form>
+		</div>
+	
+		<div th:replace="fragments/footer :: footer"></div>
+
+	</body>
+	
+</html>
