@@ -13,8 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -51,6 +50,9 @@ public class Reserva implements Serializable{
 	@JoinColumn(name="idServicio", nullable = false)
 	private Servicio servicio;
 
+	@Transient
+	private String costoTotal;
+	
 	public Reserva() {
 		super();
 		
@@ -65,6 +67,7 @@ public class Reserva implements Serializable{
 		this.psicologo = psicologo;
 		this.paciente = paciente;
 		this.servicio = servicio;
+		this.costoTotal ="S/. "+ Double.toString(servicio.getCostoServicio()*1.18);
 	}
 
 	public int getIdReserva() {
@@ -115,6 +118,12 @@ public class Reserva implements Serializable{
 		this.servicio = servicio;
 	}
 
+	public String getCostoTotal() {
+		return "S/. "+ Double.toString(servicio.getCostoServicio()*1.18);
+	}
 
+	public void setCostoTotal(String costoTotal) {
+		this.costoTotal = costoTotal;
+	}
 
 }

@@ -32,7 +32,7 @@
 						<label 	for="fecha">Fecha:</label> 
 						<input disabled type="date" th:field="*{fechaReserva}" class="form-control" id="fecha"></input>
 						
-						<label for= "servicio" class = "col-sm-2 col-from-label">Servicio</label>
+						<label for= "servicio">Servicio</label>
 						<select disabled class = "form-control" th:field="*{servicio.idServicio}">	
 						<option th:each= "serv: ${listaServicios}"
 						        th:value= "${serv.idServicio}"
@@ -40,7 +40,7 @@
 						        th:selected= "(${serv.idServicio} == *{servicio.idServicio})"></option>
 						 </select>
 						
-						<label for= "psicologo" class = "col-sm-2 col-from-label">Psicologo</label>
+						<label for= "psicologo">Psicologo</label>
 						<select disabled class = "form-control" th:field="*{psicologo.idPsicologo}">						
 						<option th:each= "psi: ${listaPsicologos}"
 						        th:value= "${psi.idPsicologo}"
@@ -49,13 +49,17 @@
 						 </select>
 						
 						
-						<label for= "paciente" class = "col-sm-2 col-from-label">Paciente</label>
+						<label for= "paciente">Paciente</label>
 						<select disabled class = "form-control" th:field="*{paciente.idPaciente}">						
 						<option th:each= "pac: ${listaPacientes}"
 						        th:value= "${pac.idPaciente}"
 						        th:text= "${pac.nombrePaciente}"
 						        th:selected= "(${pac.idPaciente} == *{paciente.idPaciente})"></option>
 						 </select>
+						 
+						 <label 	for="costoServicioTotal">Precio:</label> 
+						<input disabled type="text" th:field="*{costoTotal}" class="form-control" id="costoServicioTotal"></input>
+						 
 					</div>
 					
 				</div>
