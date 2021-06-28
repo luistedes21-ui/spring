@@ -2,18 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <style>
-
-
 body {font-family: "Times New Roman", Georgia, Serif;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display";
   letter-spacing: 5px;
 }
-
-
-
-
 </style>
+
 <head>
 
 <meta charset="UTF-8"></meta>
@@ -34,9 +29,14 @@ h1, h2, h3, h4, h5, h6 {
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
-
+<link th:href="@{/css/template/magnific-popup.min.css}"  rel="stylesheet">
+<link th:href="@{/css/template/creative.css}"  rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
+
+
 
 <body>
 
@@ -55,6 +55,23 @@ h1, h2, h3, h4, h5, h6 {
     </div>
   </div>
 	
+	 <div class="container my-auto">
+    <div class="row">
+    <!-- img th:src="@{/imagenes/header.png}" class="masthead imagen" -->
+      <div class="col-lg-10 mx-auto">
+        <h1 class="text-uppercase">
+          <strong>Tus emociones,nuestra prioridad, empieza un camino de bienestar</strong>
+        </h1>
+        <hr>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <!-- <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your ../static/ and start going, no strings attached!</p>
+        -->
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nosotros">Nosotros</a>
+      </div>
+    </div>
+  </div>
+	
 	
 				
 	 <div class="w3-row w3-padding-64" id="about">
@@ -70,8 +87,28 @@ h1, h2, h3, h4, h5, h6 {
     </div>
   </div>
   
+	 <div class="container my-auto">
+    <div class="row">
+    <!-- img th:src="@{/imagenes/header.png}" class="masthead imagen" -->
+      <div class="col-lg-10 mx-auto">
+        <h1 class="text-uppercase">
+          <strong>Tus emociones,nuestra prioridad, empieza un camino de bienestar</strong>
+        </h1>
+        <hr>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <!-- <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your ../static/ and start going, no strings attached!</p>
+        -->
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nosotros">Nosotros</a>
+      </div>
+    </div>
+  </div>
+  
+  
+	<br>
+	
 	 
-	<div class="container">
+	<div class="container" id="nosotros">
 		<form id="myform">
 			<div class="row clearfix">
 				<div class="col-md-12 column" align="center">

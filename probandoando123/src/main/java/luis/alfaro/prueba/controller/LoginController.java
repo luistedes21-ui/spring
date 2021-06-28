@@ -12,13 +12,9 @@ public class LoginController {
 	}
 	
 	
-	/*@GetMapping("/")
-	public String irlogin() {
-		return "redirect:/login";
-	}*/
 	@GetMapping("/")
 	public String irlogin() {
-		return "landing";
+		return "redirect:/login";
 	}
 	
 }

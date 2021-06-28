@@ -33,8 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/psicologo/**").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/reserva/**").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/especialidad/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/servicio/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/welcome/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").and()
+				.antMatchers("/servicio/**").access("hasRole('ROLE_ADMIN')").and()
 				.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/welcome/bienvenido")
 				.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error_403");
 		}
