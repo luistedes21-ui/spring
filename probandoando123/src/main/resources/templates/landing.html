@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="thymeleaf.org">
 <head>
 
   <meta charset="utf-8">
@@ -139,8 +138,8 @@
   <div class="container-fluid p-0">
     <div class="row no-gutters popup-gallery">
       <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="img/universidades/catolica.jpg">
-          <img class="img-fluid full-section" src="img/universidades/catolica.jpg" alt="">
+        <a class="portfolio-box" th:src="@{/imagenes/universidades/psicologa.png}">
+          <img class="img-fluid full-section" th:src="@{/imagenes/universidades/psicologa.png}" alt="">
           <div class="portfolio-box-caption">
             <div class="portfolio-box-caption-content">
               <div class="project-category text-faded">
