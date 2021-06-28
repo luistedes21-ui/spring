@@ -8,9 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import upc.edu.pe.model.Psicologo;
 
-@Repository //importante indicar acá que es un Repository
+//importante indicar acá que es un Repository
+@Repository 
 public interface iPsicologoRepository extends JpaRepository<Psicologo,Integer> {
+	
 	@Query("from Psicologo p where p.nombrePsicologo like %:nombrePsicologo%")
 	List<Psicologo>buscarPsicologo(@Param("nombrePsicologo")String nombrePsicologo);
-
+	
+	@Query("select p from Psicologo p where p.codigoCPSP like %:codigoCPSP%")
+	List<Psicologo> findByCod(String codigoCPSP);
 }

@@ -61,8 +61,10 @@ public class PacienteServiceImpl implements iPacienteService{
 
 	@Override
 	@Transactional (readOnly = true)
-	public List<Paciente> buscarNombre(String nombrePaciente) {
-		return dPaciente.buscarNombre(nombrePaciente);
+	public List<Paciente> buscarPaciente(String nombrePaciente) {
+		return dPaciente.buscarPaciente(nombrePaciente);
 	}
+
+	
 
 }

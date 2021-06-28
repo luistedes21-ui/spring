@@ -11,8 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -27,6 +33,9 @@ public class Reserva implements Serializable{
 	@Column(name = "descripcionReserva", nullable = false)
 	private String descripcionReserva;
 	
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaReserva;
 	

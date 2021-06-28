@@ -11,5 +11,5 @@ public interface iPacienteService {
     public void eliminar (int idPaciente);
     public Optional<Paciente> listarId(int idPaciente);
     List<Paciente> listar();
-    List<Paciente> buscarNombre(String nombrePaciente);
+    List<Paciente> buscarPaciente(String nombrePaciente);
 }

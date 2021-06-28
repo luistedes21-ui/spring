@@ -1,10 +1,12 @@
 package upc.edu.pe.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,5 +84,29 @@ public class PsicologoController {
 		return "listPsicologo";
 	}
 
+	@RequestMapping("/irBuscar")
+	public String buscar(Model model) {
+		model.addAttribute("psicologo", new Psicologo());
+		return "buscarpsi";
+	}
 	
+	@RequestMapping("/buscar")
+	public String findbyCategory(@RequestParam(value = "txtnamesearch") String txtnamesearch,
+			Model model) {
+		
+		List<Psicologo> listaPsicologos;
+		if (StringUtils.isEmpty(txtnamesearch)) {
+			model.addAttribute("mensaje", "No hay resultados");
+			listaPsicologos = pService.listar();
+		} else {
+			listaPsicologos = pService.buscarPsicologo(txtnamesearch);
+		}
+		
+		if (listaPsicologos.isEmpty()) {
+			model.addAttribute("mensaje", "No existen resultados");
+		}
+		model.addAttribute("listaPsicologos", listaPsicologos);				
+		return "buscarpsi";
+		
+	}
 }

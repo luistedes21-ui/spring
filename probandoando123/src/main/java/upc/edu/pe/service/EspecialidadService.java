@@ -12,8 +12,7 @@ public interface EspecialidadService {
 	public boolean modificar (Especialidad especialidad);
 	public void eliminar(int idEspecialidad);
 	public Optional<Especialidad> listarId(int idEspecialidad);
-	public Optional<Especialidad> buscarId(int idEspecialidad);
-	
 	List<Especialidad> listar();
+	List<Especialidad> buscarEspecialidad(String nombreEspecialidad);
 	
 }

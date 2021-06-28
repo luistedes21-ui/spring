@@ -12,5 +12,5 @@ import upc.edu.pe.model.Paciente;
 @Repository
 public interface iPacienteRepository extends JpaRepository<Paciente, Integer>{
     @Query("from Paciente p where p.nombrePaciente like %:nombrePaciente%")
-	List<Paciente> buscarNombre(@Param("nombrePaciente")String nombrePaciente);
+	List<Paciente> buscarPaciente(@Param("nombrePaciente")String nombrePaciente);
 }

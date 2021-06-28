@@ -62,8 +62,8 @@ public class ServicioServiceImpl implements ServicioService{
 
 	@Override
 	@Transactional (readOnly = true)
-	public List<Servicio> buscarNombre(String nombreServicio) {
-		return dServicio.buscarNombre(nombreServicio);
+	public List<Servicio> buscarServicio(String nombreServicio) {
+		return dServicio.buscarServicio(nombreServicio);
 	}
 
 }

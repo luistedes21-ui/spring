@@ -1,6 +1,7 @@
 package upc.edu.pe.controller;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -95,5 +97,30 @@ public class EspecialidadController {
 
 	}
 	
+	@RequestMapping("/irBuscar")
+	public String buscar(Model model) {
+		model.addAttribute("especialidad", new Especialidad());
+		return "buscaresp";
+	}
 	
+	@RequestMapping("/buscar")
+	public String findbyCategory(@RequestParam(value = "txtnamesearch") String txtnamesearch,
+			Model model) {
+		
+		List<Especialidad> listaEspecialidades;
+		if (StringUtils.isEmpty(txtnamesearch)) {
+			model.addAttribute("mensaje", "No hay resultados");
+			listaEspecialidades = eService.listar();
+		} else {
+			listaEspecialidades = eService.buscarEspecialidad(txtnamesearch);
+		}
+		
+		if (listaEspecialidades.isEmpty()) {
+			model.addAttribute("mensaje", "No existen resultados");
+		}
+		model.addAttribute("listaEspecialidades", listaEspecialidades);				
+		return "buscaresp";
+		
+	}
+
 }

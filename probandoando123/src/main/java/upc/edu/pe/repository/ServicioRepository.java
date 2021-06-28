@@ -13,5 +13,5 @@ import upc.edu.pe.model.Servicio;
 @Repository
 public interface ServicioRepository extends JpaRepository<Servicio, Integer>{
     @Query("from Servicio s where s.nombreServicio like %:nombreServicio%")
-	List<Servicio> buscarNombre(@Param("nombreServicio")String nombreServicio);
+	List<Servicio> buscarServicio(@Param("nombreServicio")String nombreServicio);
 }

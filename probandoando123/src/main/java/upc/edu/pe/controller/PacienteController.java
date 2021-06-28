@@ -1,11 +1,13 @@
 package upc.edu.pe.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,6 +89,32 @@ public class PacienteController {
 		}
 		return "listPaciente";
 
+	}
+	
+	@RequestMapping("/irBuscar")
+	public String buscar(Model model) {
+		model.addAttribute("paciente", new Paciente());
+		return "buscarpaci";
+	}
+	
+	@RequestMapping("/buscar")
+	public String findbyCategory(@RequestParam(value = "txtnamesearch") String txtnamesearch,
+			Model model) {
+		
+		List<Paciente> listaPacientes;
+		if (StringUtils.isEmpty(txtnamesearch)) {
+			model.addAttribute("mensaje", "No hay resultados");
+			listaPacientes = pService.listar();
+		} else {
+			listaPacientes = pService.buscarPaciente(txtnamesearch);
+		}
+		
+		if (listaPacientes.isEmpty()) {
+			model.addAttribute("mensaje", "No existen resultados");
+		}
+		model.addAttribute("listaPacientes", listaPacientes);				
+		return "buscarpaci";
+		
 	}
 	
 }

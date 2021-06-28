@@ -11,5 +11,5 @@ public interface ServicioService {
     public void eliminar (int idServicio);
     public Optional<Servicio> listarId(int idServicio);
     List<Servicio> listar();
-    List<Servicio> buscarNombre(String nombreServicio);
+    List<Servicio> buscarServicio(String nombreServicio);
 }

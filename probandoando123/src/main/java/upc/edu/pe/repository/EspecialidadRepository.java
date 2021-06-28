@@ -15,7 +15,7 @@ import upc.edu.pe.model.Especialidad;
 
 public interface EspecialidadRepository extends JpaRepository<Especialidad, Integer>{
 	 @Query("from Especialidad e where e.nombreEspecialidad like %:nombreEspecialidad%")
-		List<Especialidad> buscarNombre(@Param("nombreEspecialidad")String nombreEspecialidad);
+		List<Especialidad> buscarEspecialidad(@Param("nombreEspecialidad")String nombreEspecialidad);
 	
 
 }

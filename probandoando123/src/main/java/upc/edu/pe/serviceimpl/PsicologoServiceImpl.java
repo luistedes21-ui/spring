@@ -61,8 +61,13 @@ public class PsicologoServiceImpl implements iPsicologoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Psicologo> buscaNombrePsicologo(String nombrePsicologo) {
+	public List<Psicologo> buscarPsicologo(String nombrePsicologo) {
 		return dP.buscarPsicologo(nombrePsicologo);
+	}
+
+	@Override
+	public List<Psicologo> findByCod(String codigoCPSP) {
+		return dP.findByCod(codigoCPSP);
 	}
 
 }

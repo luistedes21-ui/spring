@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="ISO-8859-1"></meta>
+<title>Paciente</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+</link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+<script type="text/javascript" th:src="@{/js/.js}"></script>
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row clearfix">
+		  
+			<form th:action="@{/paciente/buscar}" method="post" th:object="${paciente}">
+				<div class="form-group">
+					<div class="col-sm-12">
+						<input type="text" class="form-control" th:name="txtnamesearch" 
+						id="rep" placeholder="Ingrese el nombre a buscar"> 
+					</input>
+						<div align="left">
+							<button type="submit" class="btn btn-primary btn-md left-block">Buscar</button>
+							<a href="/paciente/listarPaciente" class="btn btn-dark">Cancelar</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<hr class="sidebar-divider">
+		<table class="table table-bordered table-hover table-striped"
+			id="tab_logic">
+			<thead>
+				<tr>
+					<th class="text-center">ID</th>
+					<th class="text-center">NOMBRE</th>
+					<th class="text-center">APELLIDO</th>
+					<th class="text-center">EDAD</th>
+					<th class="text-center">DNI</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr th:each="paci: ${listaPacientes}">
+
+					<td th:text="${paci.idPaciente}"></td>
+					<td th:text="${paci.nombrePaciente}"></td>
+					<td th:text="${paci.apellidoPaciente}"></td>
+					<td th:text="${paci.edadPaciente}"></td>
+					<td th:text="${paci.dniPaciente}"></td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<p th:text="${mensaje}" class="form-text text-dark"></p>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

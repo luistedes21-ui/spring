@@ -59,16 +59,15 @@ public class EspecialidadServiceImpl implements EspecialidadService {
 	}
 
 	@Override
-	public Optional<Especialidad> buscarId(int idEspecialidad) {
-		
-		return dEspe.findById(idEspecialidad);
+	@Transactional(readOnly = true)
+	public List<Especialidad> listar() {
+		return dEspe.findAll();
 	}
 
 	@Override
-	@Transactional
-	public List<Especialidad> listar() {
-		
-		return dEspe.findAll();
+	@Transactional (readOnly = true)
+	public List<Especialidad> buscarEspecialidad(String nombreEspecialidad) {
+		return dEspe.buscarEspecialidad(nombreEspecialidad);
 	}
 
 	

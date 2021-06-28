@@ -1,11 +1,13 @@
 package upc.edu.pe.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -126,11 +128,32 @@ public class ServicioController {
 			}
 	
 	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model)
-	{
+	public String irBuscar(Model model){
 		model.addAttribute("servicio", new Servicio());
-		return "buscar";
+		return "buscarservi";
+		
 	}
+	@RequestMapping("/buscar")
+	public String findbyCategory(@RequestParam(value = "txtnamesearch") String txtnamesearch,
+			Model model) {
+		
+		List<Servicio> listaServicios;
+		if (StringUtils.isEmpty(txtnamesearch)) {
+			model.addAttribute("mensaje", "No hay resultados");
+			listaServicios = sService.listar();
+		} else {
+			listaServicios = sService.buscarServicio(txtnamesearch);
+		}
+		
+		if (listaServicios.isEmpty()) {
+			model.addAttribute("mensaje", "No existen resultados");
+		}
+		model.addAttribute("listaServicios", listaServicios);				
+		return "buscarservi";
+		
+	}
+	
+	
 	
 }
 
