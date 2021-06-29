@@ -41,17 +41,21 @@
 					<li class="active"><a th:href="@{/especialidad/listarEspecialidad}">Especialidad</a></li>
 					<li class="active"><a th:href="@{/servicio/listarServicio}">Servicio</a></li>
 					<li class="active"><a th:href="@{/reserva/listarReserva}">Reserva</a></li>
-					
+						<li class="active">	<form id="logoutForm" th:action="@{/logout}" method="post">
+					<button class="btn btn-dark navbar-btn"
+						onclick="document.getElementById('logoutForm').submit();"
+						type="submit">
+						 Cerrar Sesion <span class="glyphicon glyphicon-off" style="color:red"></span>
+						
+					</button>
+							</form>
+							
+							</li>
 				</ul>
 				
 				<a th:href="@{/reserva/irRegistrar}">
 				<button class="btn btn-success navbar-btn" > RESERVA AHORA </button>
 				</a>
-				
-				<a th:href="@{/login}">
-				<button class="btn btn-success navbar-btn" > INICIAR SESIÓN </button>
-				</a>
-				
 				
 				
 				</div>
