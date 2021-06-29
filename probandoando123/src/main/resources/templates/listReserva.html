@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<title>Psicologos</title>
+<title>Reserva</title>
 <script type="text/javascript"
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
 		</script>
@@ -41,6 +41,7 @@
 								<th class="text-center">PSICOLOGO</th>
 								<th class="text-center">PACIENTE</th>
 								<th class="text-center">SERVICIO</th>
+								<th class="text-center">PRECIO</th>
 								<th class="text-center">MODALIDAD</th>
 								<th class="text-center"></th>
 								<th class="text-center"></th>
@@ -56,6 +57,7 @@
 								<td th:text="${res.psicologo.nombrePsicologo}"></td>
 								<td th:text="${res.paciente.nombrePaciente}"></td>
 								<td th:text="${res.servicio.nombreServicio}"></td>
+								<td th:text="${'S/.  '+res.servicio.costoServicio}"></td>
 								<td th:text="Virtual"></td>
 								
 								<td><a th:href="@{/reserva/eliminar?id=}+${res.idReserva}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
